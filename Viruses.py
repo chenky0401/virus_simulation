@@ -11,7 +11,6 @@ class SimpleVirus(object):
         clearProb: Maximum clearance probability (a float between 0-1).
         """
 
-        # TODO
         self.maxBirthProb = maxBirthProb
         self.clearProb = clearProb
 
@@ -19,14 +18,12 @@ class SimpleVirus(object):
         """
         Returns the max birth probability.
         """
-        # TODO
         return self.maxBirthProb
 
     def getClearProb(self):
         """
         Returns the clear probability.
         """
-        # TODO
         return self.clearProb
 
     def doesClear(self):
@@ -36,7 +33,6 @@ class SimpleVirus(object):
         False.
         """
 
-        # TODO
         return random.random() < self.clearProb
     
     def reproduce(self, popDensity):
@@ -59,7 +55,6 @@ class SimpleVirus(object):
         NoChildException if this virus particle does not reproduce.               
         """
 
-        # TODO
         reproProp = self.maxBirthProb * (1 - popDensity)
         if random.random() < reproProp:
             return SimpleVirus(self.maxBirthProb, self.clearProb)
@@ -88,7 +83,6 @@ class ResistantVirus(SimpleVirus):
         the probability of the offspring acquiring or losing resistance to a drug.
         """
 
-        # TODO
         SimpleVirus.__init__(self, maxBirthProb, clearProb)
         self.resistances = resistances
         self.mutProb = mutProb
@@ -97,14 +91,12 @@ class ResistantVirus(SimpleVirus):
         """
         Returns the resistances for this virus.
         """
-        # TODO
         return self.resistances
 
     def getMutProb(self):
         """
         Returns the mutation probability for this virus.
         """
-        # TODO
         return self.mutProb
 
     def isResistantTo(self, drug):
@@ -119,7 +111,6 @@ class ResistantVirus(SimpleVirus):
         otherwise.
         """
         
-        # TODO
         return self.resistances.get(drug)
 
     def reproduce(self, popDensity, activeDrugs):
@@ -167,7 +158,6 @@ class ResistantVirus(SimpleVirus):
         NoChildException if this virus particle does not reproduce.
         """
 
-        # TODO
         ctn = True
         for drug in activeDrugs:
             if not self.isResistantTo(drug):

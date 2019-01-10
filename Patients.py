@@ -15,7 +15,6 @@ class Patient(object):
         maxPop: the maximum virus population for this patient (an integer)
         """
 
-        
         self.viruses = viruses
         self.totalPop = len(self.viruses)
         self.maxPop = maxPop
@@ -39,8 +38,6 @@ class Patient(object):
         Gets the size of the current total virus population. 
         returns: The total virus population (an integer)
         """
-
-                
         return self.totalPop
 
     def update(self):
