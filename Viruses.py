@@ -1,3 +1,6 @@
+import random
+from Patients import NoChildException
+
 class SimpleVirus(object):
 
     """

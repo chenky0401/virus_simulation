@@ -6,22 +6,6 @@ from Patients import Patient, TreatedPatient
 from Viruses import SimpleVirus, ResistantVirus
 #from ps3b_precompiled_36 import *
 
-''' 
-Begin helper code
-'''
-
-class NoChildException(Exception):
-    """
-    NoChildException is raised by the reproduce() method in the SimpleVirus
-    and ResistantVirus classes to indicate that a virus particle does not
-    reproduce. You can use NoChildException as is, you do not need to
-    modify/add any code.
-    """
-
-'''
-End helper code
-'''
-
 def simulationWithoutDrug(numViruses, maxPop, maxBirthProb, clearProb,
                           numTrials):
     """

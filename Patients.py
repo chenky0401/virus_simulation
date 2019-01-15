@@ -1,3 +1,10 @@
+class NoChildException(Exception):
+    """
+    NoChildException is raised by the reproduce() method in the SimpleVirus
+    and ResistantVirus classes to indicate that a virus particle does not
+    reproduce.
+    """
+
 class Patient(object):
     """
     Representation of a simplified patient. The patient does not take any drugs

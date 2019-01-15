@@ -1,25 +1,58 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>virus_simulation</title>
-</head>
-<body>
+{% extends "layout.html" %}
+
+{% block body %}
 <!-- <center> -->
 	<h1>Simulating the Spread of Disease and Virus Population Dynamics</h1>
-	<form action=/without_drug method="GET">
-		numViruses: <input type="text" name="numViruses" value="1" required>
+	<!-- <div id="plot"></div> -->
+	<div id="plot" style="width:1200px;height:500px;"></div>
+	<form id="form">	
+	<!-- <form id="form" action=/without_drug method="post"> -->
+		numViruses: <input id="numViruses" value="500" placeholder="100" autofocus required type="text" />
 		<br>
-		maxPop: <input type="text" name="maxPop" value="1" required>
+		maxPop: <input id="maxPop" value="1000" placeholder="1000" type="text" required/>
 		<br>
-		maxBirthProb: <input type="text" name="maxBirthProb" value="1" required>
+		maxBirthProb: <input id="maxBirthProb" value="0.1" placeholder="0.1" type="text" required/>
 		<br>
-		clearProb: <input type="text" name="clearProb" value="1" required>
+		clearProb: <input id="clearProb" value="0.05" placeholder="0.05" type="text" required/>
 		<br>
-		numTrials: <input type="text" name="numTrials" value="1" required>
+		numTrials: <input id="numTrials" value="1" placeholder="1" type="text" required/>
 		<br>
-		<input type="submit" value="Simulate without drug" value="1" required>
+		<input type="submit" value="Simulate without drug"/>
 	</form>
-	<!-- <h2><a href="/with_drug">Simulation With Drug</a></h2> -->
+	<script>
+		// document.getElementById("demo").onsubmit = function(){
+		// 	alert("test");
+		// };
+
+
+		document.getElementById("form").onsubmit = function(){
+			var aj = new XMLHttpRequest();
+			aj.onreadystatechange = function(){
+				if (aj.readyState == 4 && aj.status == 200){
+					data = JSON.parse(aj.responseText);
+					plot = document.getElementById('plot');
+					Plotly.plot( plot, [{
+					// x: [1, 2, 3, 4, 5],
+					// y: [1, 2, 4, 8, 16] }], {
+					y:   data  }], {
+					margin: { t: 0 } } );
+					// document.getElementById("plot").html(aj.responseText);
+				}
+			};
+
+
+			var numViruses = document.getElementById("numViruses").value;
+			var maxPop = document.getElementById("maxPop").value;
+			var maxBirthProb = document.getElementById("maxBirthProb").value;
+			var clearProb = document.getElementById("clearProb").value;
+			var numTrials = document.getElementById("numTrials").value;
+			// console.log(numViruses, maxPop, maxBirthProb, clearProb, numTrials);
+
+			aj.open("POST", "without_drug", true);
+			aj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			aj.send(`numViruses=${numViruses}&maxPop=${maxPop}&maxBirthProb=${maxBirthProb}&clearProb=${clearProb}&numTrials=${numTrials}`);
+			return false;
+		}
+	</script>
 <!-- </center> -->
-</body>
-</html>
+{% endblock %}
