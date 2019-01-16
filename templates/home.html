@@ -1,58 +1,49 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
 
-{% block body %}
-<!-- <center> -->
-	<h1>Simulating the Spread of Disease and Virus Population Dynamics</h1>
-	<!-- <div id="plot"></div> -->
-	<div id="plot" style="width:1200px;height:500px;"></div>
-	<form id="form">	
-	<!-- <form id="form" action=/without_drug method="post"> -->
-		numViruses: <input id="numViruses" value="500" placeholder="100" autofocus required type="text" />
-		<br>
-		maxPop: <input id="maxPop" value="1000" placeholder="1000" type="text" required/>
-		<br>
-		maxBirthProb: <input id="maxBirthProb" value="0.1" placeholder="0.1" type="text" required/>
-		<br>
-		clearProb: <input id="clearProb" value="0.05" placeholder="0.05" type="text" required/>
-		<br>
-		numTrials: <input id="numTrials" value="1" placeholder="1" type="text" required/>
-		<br>
-		<input type="submit" value="Simulate without drug"/>
-	</form>
-	<script>
-		// document.getElementById("demo").onsubmit = function(){
-		// 	alert("test");
-		// };
+<html>
+    <head>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <title>virus_simulation</title>
+    </head>
+    <body>
+		<center>
+		<h1>Simulating the Spread of Disease and Virus Population Dynamics</h1>
+		<div id="plot" style="width:1200px;height:500px;"></div>
+		<form id="form">	
+			Number of Viruses: <input id="numViruses" placeholder="eg: 500" type="text" autocomplete="off" autofocus required/><br>
+			Maximum Population: <input id="maxPop" placeholder="eg: 1000" type="text" autocomplete="off" required/><br>
+			Maximum Birth Probability: <input id="maxBirthProb" placeholder="eg: 0.1" type="text" autocomplete="off" required/><br>
+			Clear Probability: <input id="clearProb" placeholder="eg: 0.05" type="text" autocomplete="off" required/><br>
+			Number of Trials: <input id="numTrials" placeholder="eg: 5" type="text" autocomplete="off" required/><br>
+			<input type="submit" value="Simulate"/>
+		</form>
+		<script>
+			document.getElementById("form").onsubmit = function(){
+				var aj = new XMLHttpRequest();
+				aj.onreadystatechange = function(){
+					if (aj.readyState == 4 && aj.status == 200){
+						if (aj.responseText == ""){
+							alert("Number of Viruses must be a non-negative integer!\nMaximum Population must be a non-negative integer!\nMaximum Birth Probability must be between 0 and 1!\nClear Probability must be between 0 and 1!\nNumber of Trials must be a non-negative integer!");
+							return false;
+						}
+						data = JSON.parse(aj.responseText);
+						plot = document.getElementById('plot');
+						Plotly.plot( plot, [{y: data}], {margin: { t: 0 } } );
+					}
+				};
 
+				var numViruses = document.getElementById("numViruses").value;
+				var maxPop = document.getElementById("maxPop").value;
+				var maxBirthProb = document.getElementById("maxBirthProb").value;
+				var clearProb = document.getElementById("clearProb").value;
+				var numTrials = document.getElementById("numTrials").value;
 
-		document.getElementById("form").onsubmit = function(){
-			var aj = new XMLHttpRequest();
-			aj.onreadystatechange = function(){
-				if (aj.readyState == 4 && aj.status == 200){
-					data = JSON.parse(aj.responseText);
-					plot = document.getElementById('plot');
-					Plotly.plot( plot, [{
-					// x: [1, 2, 3, 4, 5],
-					// y: [1, 2, 4, 8, 16] }], {
-					y:   data  }], {
-					margin: { t: 0 } } );
-					// document.getElementById("plot").html(aj.responseText);
-				}
-			};
-
-
-			var numViruses = document.getElementById("numViruses").value;
-			var maxPop = document.getElementById("maxPop").value;
-			var maxBirthProb = document.getElementById("maxBirthProb").value;
-			var clearProb = document.getElementById("clearProb").value;
-			var numTrials = document.getElementById("numTrials").value;
-			// console.log(numViruses, maxPop, maxBirthProb, clearProb, numTrials);
-
-			aj.open("POST", "without_drug", true);
-			aj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			aj.send(`numViruses=${numViruses}&maxPop=${maxPop}&maxBirthProb=${maxBirthProb}&clearProb=${clearProb}&numTrials=${numTrials}`);
-			return false;
-		}
-	</script>
-<!-- </center> -->
-{% endblock %}
+				aj.open("POST", "without_drug", true);
+				aj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				aj.send(`numViruses=${numViruses}&maxPop=${maxPop}&maxBirthProb=${maxBirthProb}&clearProb=${clearProb}&numTrials=${numTrials}`);
+				return false;
+			}
+		</script>
+		</center>
+	</body>
+</html>
