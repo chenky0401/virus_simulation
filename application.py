@@ -4,7 +4,6 @@ import pylab
 
 
 app = Flask(__name__)
-# data = []
 
 @app.route("/")
 def home():
@@ -24,18 +23,8 @@ def without_drug():
 		data.extend(simulationWithoutDrug(numViruses, maxPop, maxBirthProb, clearProb, numTrials))
 	except:
 		return ""
-	# return render_template("plot.html")
-	# return render_template("plot.html", data=data)
-	# return redirect("/plot")
-	# return numViruses
-	# return jsonify(numViruses)
 	return jsonify(simulationWithoutDrug(numViruses, maxPop, maxBirthProb, clearProb, numTrials))
 	# return jsonify(simulationWithoutDrug(100, 1000, 0.1, 0.05, 1))
-
-@app.route("/with_drug", methods=['GET', 'POST'])
-def with_drug():
-	if request.method == 'GET':
-		return jsonify(simulationWithDrug(75, 100, .8, 0.1, {"guttagonol": True}, 0.8, 1))
 
 
 if __name__ == "__main__":
