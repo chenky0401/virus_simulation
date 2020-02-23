@@ -26,4 +26,4 @@ def without_drug():
 	return jsonify(simulationWithoutDrug(numViruses, maxPop, maxBirthProb, clearProb, numTrials))
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run(debug=False)
