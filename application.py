@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request, jsonify
 from simulation import simulationWithoutDrug, simulationWithDrug
-import pylab
+# import pylab
 
 
 app = Flask(__name__)
