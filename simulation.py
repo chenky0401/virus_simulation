@@ -21,8 +21,6 @@ def simulationWithoutDrug(numViruses, maxPop, maxBirthProb, clearProb,
     clearProb: Maximum clearance probability (a float between 0-1)
     numTrials: number of simulation runs to execute (an integer)
     """
-
-
     nTimeSteps = 300
     virPopList = [0] * nTimeSteps
     for each in range(numTrials):
@@ -69,7 +67,6 @@ def simulationWithDrug(numViruses, maxPop, maxBirthProb, clearProb, resistances,
     
     """
 
-
     nTimeSteps = 150
     virPopList = [0] * nTimeSteps * 2
     resistVirPopList = [0] * nTimeSteps * 2
@@ -98,6 +95,7 @@ def simulationWithDrug(numViruses, maxPop, maxBirthProb, clearProb, resistances,
     # pylab.legend(loc = "best")
     # pylab.show()
     return (virPopList, resistVirPopList)
+
 
 if __name__ == "__main__":
     random.seed(0)

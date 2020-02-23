@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template('home.html')
+	return render_template('home.html')
 
 @app.route("/without_drug", methods=['GET', 'POST'])
 def without_drug():
@@ -24,10 +24,6 @@ def without_drug():
 	except:
 		return ""
 	return jsonify(simulationWithoutDrug(numViruses, maxPop, maxBirthProb, clearProb, numTrials))
-	# return jsonify(simulationWithoutDrug(100, 1000, 0.1, 0.05, 1))
-
 
 if __name__ == "__main__":
 	app.run(debug=True)
-
-# TODO: resistance 選單
