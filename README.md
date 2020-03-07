@@ -14,8 +14,9 @@ Then, activate the virtual envirnment:<br/>
 `$ source venv/bin/activate`
 
 To run the server:<br/>
-`$ export FLASK_APP=application.py`<br/>
-`$ flask run`
+`$ export FLASK_APP=application.py
+
+$ flask run`
 
 Now you can visit [localhost:5000](https://localhost:5000) to see the application.
 
