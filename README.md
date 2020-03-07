@@ -21,6 +21,6 @@ To run the server:
 `$ export FLASK_APP=application.py
 $ flask run`
 
-Now you can visit [localhost:5000](localhost:5000) to see the application.
+Now you can visit [localhost:5000](https://localhost:5000) to see the application.
 
 
