@@ -7,13 +7,17 @@ This project is an extension of a problem set in [this](https://www.edx.org/cour
 
 ## Running Locally
 
-To run this program locally, first clone the repo to your local machine:<br/>
-`$ git clone https://github.com/chenky0401/virus_simulation.git`
+To run this program locally, first clone the repo to your local machine:
+```
+$ git clone https://github.com/chenky0401/virus_simulation.git
+```
 
-Then, activate the virtual envirnment:<br/>
-`$ source venv/bin/activate`
+Then, activate the virtual envirnment:
+```
+$ source venv/bin/activate
+```
 
-To run the server:<br/>
+To run the server:
 ```
 $ export FLASK_APP=application.py
 $ flask run
