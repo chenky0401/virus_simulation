@@ -8,15 +8,21 @@ Please see [here](https://github.com/chenky0401/virus_simulation/blob/master/ps3
 
 ## Running Locally
 
-To run this program locally, first clone the repo to your local machine:<br/>
-`$ git clone https://github.com/chenky0401/virus_simulation.git`
+To run this program locally, first clone the repo to your local machine:
+```
+$ git clone https://github.com/chenky0401/virus_simulation.git
+```
 
-Then, activate the virtual envirnment:<br/>
-`$ source venv/bin/activate`
+Then, activate the virtual envirnment:
+```
+$ source venv/bin/activate
+```
 
-To run the server:<br/>
-`$ export FLASK_APP=application.py
-$ flask run`
+To run the server:
+```
+$ export FLASK_APP=application.py
+$ flask run
+```
 
 Now you can visit [localhost:5000](https://localhost:5000) to see the application.
 
